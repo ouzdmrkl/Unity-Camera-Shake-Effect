@@ -7,18 +7,21 @@ public class CameraShakeScript : MonoBehaviour
 {
     private bool keyTrigger = true; // Added a bool to trigger effect once at the time
 
+    [SerializeField] private ParticleSystem explosionEffect;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S) && keyTrigger)
         {
-
-            StartCoroutine(Shake(0.2f, 0.1f));
+            explosionEffect.Play(); // Play the explosion effect
+            
+            StartCoroutine(Shake(0.3f, 0.5f)); // Start camera shake coroutine
 
             keyTrigger = false;
         }
     }
 
-    private IEnumerator Shake(float duration, float magnitude)
+    private IEnumerator Shake(float duration, float magnitude) // Duration, how long cam will shake, magnitude how hard camera will shake
     {
         Vector3 original_Pos = transform.localPosition; // Original start position of the camera
       
